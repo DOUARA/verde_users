@@ -6,8 +6,8 @@ const TableHead = () => {
                 <th className="whitespace-nowrap">USER ID</th>
                 <th className="whitespace-nowrap">PROFILE IMAGE</th>
                 <th>NAME</th>
-                <th >USERNAME</th>
-                <th className="w-full">EMAIL</th>
+                <th className="text-left">USERNAME</th>
+                <th className="w-full text-left">EMAIL</th>
             </tr>
         </thead>
     )

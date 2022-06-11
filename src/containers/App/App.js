@@ -1,29 +1,17 @@
 import { Header, Navigation, Table } from "../../components";
 import { Heading } from "../../elements";
+import { useUsers } from "../../hooks"
 
 function App() {
   
+  const { usersList, loading } = useUsers([]);
+
   return (
     <>
       <Header />
       <Navigation navList = {["Settings", "Users"]} />
       <Heading text="Users" />
-      <Table users={[{
-        id: "1",
-        profileImage: "image url",
-        name: "john doe",
-        username: "John22",
-        email: "contact@test.com"
-      }, 
-      {
-        id: "2",
-        profileImage: "image url",
-        name: "john doe",
-        username: "John22",
-        email: "email"
-      }
-      
-      ]} />
+      <Table loading={loading} users={usersList} />
     </>
   );
 

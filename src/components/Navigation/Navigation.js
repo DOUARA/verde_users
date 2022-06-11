@@ -1,4 +1,5 @@
 
+import { Fragment } from "react"
 import { HomeIcon } from '../../elements';
 import { RightArrowIcon } from '../../elements';
 
@@ -10,10 +11,10 @@ function Navigation ( { navList } ) {
            <span className="pl-4"> Home </span> 
            { navList.map(el => {
               return (
-                <>
+                <Fragment key={el}>
                   <span className="px-6 "><RightArrowIcon /></span>
                   {el}
-                </>
+                </Fragment>
               )    
             })
            }
