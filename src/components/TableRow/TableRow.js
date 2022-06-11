@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../elements"
 
 const TableRow = ( {user}) => {
+
+    let navigate = useNavigate();
+
     return (
         <tr className="child:py-3 child:px-6 border-b border-gray-200">
             <td className="text-center"><input type="checkbox" /></td>
@@ -10,7 +14,7 @@ const TableRow = ( {user}) => {
             <td className="text-sm whitespace-nowrap">{user.username}</td>
             <td className="text-sm flex justify-between">
                 {user.email} 
-                <Button text="detail" onClick={()=> alert("Going to User Page")}/>
+                <Button text="detail" onClick={()=> navigate(`/user/${user.id}`)}/>
             </td>
         </tr>
     )

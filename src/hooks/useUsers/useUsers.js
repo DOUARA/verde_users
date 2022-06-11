@@ -1,13 +1,26 @@
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback } from "react"
 import useFetch from 'use-http'
 
 const useUsers = () => {
 
     const [ usersList, setUsersList ] = useState([]);
+    const [ user, setUser ] = useState([]);
 
     const { get, loading, response } = useFetch('https://jsonplaceholder.typicode.com');
 
-    const refetch = useCallback( async () => {
+    const fetchSingleUser = useCallback( async (id) => {
+        
+        const userData = await get(`/users/${id}`);
+
+        if( response.ok ) {
+            setUser(userData)
+        } else {
+            return false;
+        }
+
+    }, [get, response.ok])
+
+    const fetchUsers = useCallback( async () => {
 
         const usersData = await get(`/users`);
         
@@ -21,9 +34,6 @@ const useUsers = () => {
                 userObject.name = user?.name;
                 userObject.username = user?.username;
                 userObject.email = user?.email;
-                userObject.phone = user?.phone;
-                userObject.website = user?.website;
-                userObject.address = `${user?.address?.street}, ${user?.address?.suite}, ${user?.address?.city}`
                 usersObjectList.push(userObject);
             });
 
@@ -33,15 +43,11 @@ const useUsers = () => {
             return false;
         }
 
-    }, [get, response.ok])
+    }, [ get, response.ok ])
 
-    useEffect(() => { 
-        
-            refetch(); 
-           
-    }, [ refetch ] ) 
+  
 
-    return { usersList, loading, refetch };
+    return { usersList, loading, user, fetchUsers, fetchSingleUser };
 
 }
 

@@ -1,10 +1,16 @@
 import { Header, Navigation, Table } from "../../components";
 import { Heading } from "../../elements";
 import { useUsers } from "../../hooks"
+import { useEffect } from "react";
 
-function App() {
+
+function Home() {
   
-  const { usersList, loading } = useUsers([]);
+  const { usersList, loading, fetchUsers } = useUsers([]);
+
+  useEffect(()=> {
+    fetchUsers();
+  }, [fetchUsers])
 
   return (
     <>
@@ -17,4 +23,4 @@ function App() {
 
 }
 
-export default App;
+export default Home;
