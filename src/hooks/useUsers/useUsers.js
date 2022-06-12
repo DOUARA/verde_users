@@ -45,8 +45,6 @@ const useUsers = () => {
 
     }, [ get, response.ok ])
 
-  
-
     return { usersList, loading, user, fetchUsers, fetchSingleUser };
 
 }

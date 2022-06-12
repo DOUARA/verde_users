@@ -10,7 +10,7 @@ const User = () => {
 
     const userId = params.id;
     
-    const { user, fetchSingleUser } = useUsers();
+    const { user, fetchSingleUser, loading } = useUsers();
     
     useEffect(() => {
         fetchSingleUser(userId);
@@ -22,6 +22,7 @@ const User = () => {
             <Header />
             <Navigation navList = {["Settings", "User Details"]}/>
             <Heading text="User Details" />
+            { loading ? "Loading..." : 
             <div className="flex  px-4 py-2">
                 <img className="mr-4 w-40" alt={user.name} src={user.profileImage ? user.profileImage : "https://placehold.co/600x400"} />
                 <div class="font-medium text-sm">
@@ -33,6 +34,7 @@ const User = () => {
                     <p>Website: {user?.website}</p>
                 </div>
             </div>
+            }
         </>
     )
 
