@@ -9,7 +9,8 @@ const TableRow = ( {user, selectUser, isUserSelected}) => {
     return (
         <tr className="child:py-3 child:px-6 border-b border-gray-200">
             <td className="text-center">
-                <input type="checkbox" 
+                <input type="checkbox"
+                    className="border-gray-300 rounded bg-gray-50 focus:ring-offset-0 cursor-pointer"
                     checked={isUserSelected(user)}
                     onChange={() => selectUser(user)}
                 />
